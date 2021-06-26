@@ -1,22 +1,24 @@
-using UnityEngine;
+﻿using UnityEngine;
 using MoonSharp.Interpreter;
 
-public class RunLuaScript : MonoBehaviour
+namespace UnityLuaInterpreter
 {
-    public TextAsset scriptToRun;
-
-    // Start is called before the first frame update
-    void Start()
+    public class RunLuaScript : MonoBehaviour
     {
-        Debug.Log("Hello World");
-        Debug.Log(MoonSharpFactorial());
-    }
+        public TextAsset ScriptToRun;
 
-    double MoonSharpFactorial()
-    {
-        if (scriptToRun == null)
+        // Start is called before the first frame update
+        private void Start()
         {
-            string script = @"
+            Debug.Log(MoonSharpFactorial());
+        }
+
+        private double MoonSharpFactorial()
+        {
+            if (ScriptToRun == null)
+            {
+                // run from raw string
+                string script = @"
 			-- defines a factorial function
 			function fact (n)
 				if (n == 0) then
@@ -27,17 +29,27 @@ public class RunLuaScript : MonoBehaviour
 			end
 
 			return fact(5)";
-            // should return 120 = 5 * 4 * 3 * 2
-            DynValue res = Script.RunString(script);
-            return res.Number;
-        }
-        else
-        {
-            Debug.Log("runnig from " + scriptToRun.name);
-            // should return 120 = 5 * 4 * 3 * 2
-            DynValue res = Script.RunString(scriptToRun.text);
-            return res.Number;
-        }
+                // should return 120 = 5 * 4 * 3 * 2
+                DynValue res = Script.RunString(script);
+                return res.Number;
+            }
+            else
+            {
+                Debug.Log("runnig from " + ScriptToRun.name + " lua script");
 
+                // run from script
+                Script script = new Script();
+
+                // load script to memory
+                script.DoString(ScriptToRun.text);
+
+                // call the `fact` function with the custom argument
+                DynValue res = script.Call(script.Globals["fact"], 4);
+                // return the number value of the result
+                return res.Number;
+            }
+
+        }
     }
 }
+

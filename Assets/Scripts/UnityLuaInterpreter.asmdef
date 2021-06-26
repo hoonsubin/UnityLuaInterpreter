@@ -1,0 +1,16 @@
+{
+    "name": "UnityLuaInterpreter",
+    "rootNamespace": "UnityLuaInterpreter",
+    "references": [
+        "MoonSharp"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
