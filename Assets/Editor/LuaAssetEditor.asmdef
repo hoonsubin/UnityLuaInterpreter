@@ -1,9 +1,7 @@
 {
-    "name": "UnityLuaInterpreter",
-    "rootNamespace": "UnityLuaInterpreter",
-    "references": [
-        "MoonSharp"
-    ],
+    "name": "LuaCustomAssetEditor",
+    "rootNamespace": "LuaCustomAssetEditor",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

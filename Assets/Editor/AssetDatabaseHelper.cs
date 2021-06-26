@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using UnityEditor;
 
-namespace Editor
+namespace LuaCustomAssetEditor
 {
     public static class AssetDatabaseEx
     {
